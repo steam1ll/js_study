@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+/* 4.2.13 객체의 메서드 */
+var circle = {
+    center: { x:1.0, y:2.0 },
+    radius: 2.5,
+    area: function () {
+        return Math.PI * this.radius * this.radius;
+    }
+};
+
+circle.area()
+
+//원을 평행이동 시키는 translate 메서드(함수를 값으로 가진 프로퍼)
+
+circle.translate = function(a,b) {
+    this.center.x = this.center.x + a;
+    this.center.y = this.center.y + b;
+};
+
+circle.translate(1,2);
+circle.center;
+
+/* 생성자로 객체 생성하기 */
+function Card(suit, rank) {
+  this.suit = suit;
+  this.rank = rank;
+}
+
+var card = new Card("하트", "A");
+
+console.log(card);
+
+/* 생성자의 역할 */
+var card1 = new Card("heart", "A");
+var card2 = new Card("club", "K");
+var card3 = new Card("spade", "2");
+
+/* 좌표와 속도를 가진 좌표평면 위에 파티클을 표현하는 객체를 생성하는 생성자 Particle*/
+function Particle(x, y, vx, vy) {
+    this.x = x;
+    this.y = y;
+    this.vx = vx;
+    this.vy = vy;
+    this.velocoty = Math.sqrt(vx * vx + vy * vy);
+}
+var p = new Particle(0, 0, 3, 4);
+console.log(p);
+
+/* 메서드를 가진 객체를 생성하는 생성자 */
+function Circle(center, radius) {
+    this.center = center;
+    this.radius = radius;
+    this.area = function() {
+        return Math.PI * this.radius * this.radius;
+    };
+}
+var p = {x:0, y:0};
+var c = new Circle(p, 2.0);
+console.log("넓이 = " + c.area());
+
+/* 배열의 기초 */
+var evens = [ 2, 4, 6, 8 ];
+
+//배열 리터럴 안에 어더한 요소도 작성되지 않을시
+var empty = [];
+console.log(empty);
+
+//배열 리터럴 요소 값을 생략 할 시
+var a = [ 2,  , 4];
+console.log(a);
+
+//모든 타입의 값 가능
+var varios = [ 3.14, "pi", true, {x:1, y:2}, [2, 4, 6, 8]];
+
+/* Lenght 프로퍼티 */
+//배열의 length 프로퍼티는 배열 요소의 최대 인덱스 값 +1이 담겨있다. << 배열길이
+var evens = [2, 4, 6, 8];
+evens.length
+
+//현재의 배열 요소 개수보다 작고 0보다 큰 정수 값을 대입하면 배열 길이가 줄어든다.(배열길이 넘는 인댁스 요소 삭제)
+var a = ["A", "B", "C", "D"];
+a.length = 2;
+console.log(a);
+
+/*Array 생성자로 생성*/
+var evens = new Array(2, 4, 6, 8);
+var empty = new Array();
+var a = new Array(2, 4);
+var various = new Array(3.14, "pi", true, {x:1, y:2}, [2, 4, 6, 8])
+
+//Array 생성자의 인수가 한개이고 양수이면 배열의 길이를 뜻하게 됨. (음수에는 오류)
+var x = new Array(3);
+console.log(x.length);
+
+//특정 인덱스 요소는 대괄호 연산자를 이용해 읽거나 쓸수 있다.
+evns[2]  // -->6
+
+//배얄의 요소의 추가와 삭제
+
+var a = ["A", "B", "C"];
+a[3] = "D";
+console.log(a);
+
+var a = ["A", "B", "C"];
+a.push("D");
+console.log(a);
+
+//delete 연산자를 이용해 특정 배열요소를 삭제 가능하나 Length 프로퍼티 갑ㅃㅅ은 바뀌지 않는다.
+
+/*희소배열*/
+//배열에 요소를 추가하거나 제거하면 인덱스가 0부터 시작되지 않는 배열이 생성. 이러한 배열 = 희소배열
+var a = ["A", "B", "C"];
+a[4] = "E"
+console.log(a);   //a[3]가 엠티로 표시되지만 실제 저요소는 없는것 희소배열의 길이는 일반 배열의  길이보다 크다
